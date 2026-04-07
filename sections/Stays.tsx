@@ -2,7 +2,7 @@ import StayCard from "@/components/StayCard";
 
 const stays = [
   {
-    title: "Cosme Stay",
+    title: "House of Cosme",
     link: "https://airbnb.com/h/cupcakehomes-cosme",
     images: ["/stay1a.avif", "/stay1b.avif", "/stay1c.avif", "/stay1d.avif", "/stay1e.avif"],
     amenities: [
@@ -18,7 +18,7 @@ const stays = [
     unavailable: ["Carbon monoxide alarm", "Smoke alarm"],
   },
   {
-    title: "House of Heim",
+    title: "House of Hem",
     link: "https://airbnb.com/h/cupcakehomes-houseofheim",
     images: ["/stay2a.avif", "/stay2b.avif", "/stay2c.avif", "/stay2d.avif", "/stay2e.avif"],
     amenities: [
