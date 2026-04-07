@@ -45,11 +45,13 @@ const reviews = [
 
 export default function ReviewsSection() {
   const [index, setIndex] = useState(0);
-  const [expanded, setExpanded] = useState(null);
+  const [expanded, setExpanded] = useState<number | null>(null);
   const [cardsToShow, setCardsToShow] = useState(3);
-  const intervalRef = useRef(null);
 
-  // RESPONSIVE CARDS
+  // ✅ FIXED TYPE
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
+
+  // RESPONSIVE
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth < 640) setCardsToShow(1);
@@ -67,18 +69,28 @@ export default function ReviewsSection() {
   // AUTOPLAY
   useEffect(() => {
     startAutoSlide();
-    return () => clearInterval(intervalRef.current);
+
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
+    };
   }, [index, cardsToShow]);
 
   const startAutoSlide = () => {
-    clearInterval(intervalRef.current);
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+    }
+
     intervalRef.current = setInterval(() => {
       setIndex((prev) => (prev >= maxIndex ? 0 : prev + 1));
     }, 3000);
   };
 
   const stopAutoSlide = () => {
-    clearInterval(intervalRef.current);
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+    }
   };
 
   const next = () => {
@@ -139,7 +151,7 @@ export default function ReviewsSection() {
 
                     {/* TEXT */}
                     <p
-                      className={`text-sm text-gray-700 mb-2 transition-all duration-300 ${
+                      className={`text-sm text-gray-700 mb-2 ${
                         isExpanded ? "" : "line-clamp-3 sm:line-clamp-4"
                       }`}
                     >
@@ -149,7 +161,9 @@ export default function ReviewsSection() {
                     {/* READ MORE */}
                     {review.text.length > 100 && (
                       <button
-                        onClick={() => setExpanded(isExpanded ? null : i)}
+                        onClick={() =>
+                          setExpanded(isExpanded ? null : i)
+                        }
                         className="text-xs text-[#C2A878] font-medium hover:underline"
                       >
                         {isExpanded ? "Read Less" : "Read More"}
