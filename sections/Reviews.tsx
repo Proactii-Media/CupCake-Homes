@@ -24,12 +24,6 @@ const reviews = [
     text: "Great place to stay, really close to the beach and in a gated complex so nice and secure.",
   },
   {
-    category: "Benaulim Beach",
-    name: "Tom",
-    rating: 3,
-    text: "A great location for shacks and beaches, however this home needs a deep clean and an update in the kitchen.",
-  },
-  {
     category: "Miramar",
     name: "Nikhil",
     rating: 5,
